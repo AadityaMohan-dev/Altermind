@@ -1,0 +1,7 @@
+[
+  {"event_type":"process_creation","username":"alice","source_ip":"10.0.0.8","process_name":"powershell.exe","command_line":"powershell.exe -NoProfile","message":"PowerShell launched on workstation"},
+  {"event_type":"failed_login","username":"admin","source_ip":"203.0.113.45","message":"Invalid password for admin"},
+  {"event_type":"process_creation","username":"bob","source_ip":"10.0.0.12","process_name":"powershell.exe","command_line":"powershell.exe -Command DownloadString","message":"PowerShell download-related command"},
+  {"event_type":"process_creation","username":"attacker","source_ip":"198.51.100.23","process_name":"powershell.exe","command_line":"powershell.exe -EncodedCommand SQBFAFgA","message":"Obfuscated base64 PowerShell command"},
+  {"event_type":"successful_login","username":"alice","source_ip":"10.0.0.8","message":"Normal successful login"}
+]

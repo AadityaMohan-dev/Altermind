@@ -1,0 +1,11 @@
+title: PowerShell Process Execution
+id: AM-001
+status: test
+level: medium
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    process_name|endswith: powershell.exe
+  condition: selection

@@ -1,0 +1,11 @@
+title: Failed Login Event
+id: AM-002
+status: test
+level: low
+logsource:
+  product: any
+  category: authentication
+detection:
+  selection:
+    event_type: failed_login
+  condition: selection
