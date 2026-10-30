@@ -3,5 +3,13 @@
   {"event_type":"failed_login","username":"admin","source_ip":"203.0.113.45","message":"Invalid password for admin"},
   {"event_type":"process_creation","username":"bob","source_ip":"10.0.0.12","process_name":"powershell.exe","command_line":"powershell.exe -Command DownloadString","message":"PowerShell download-related command"},
   {"event_type":"process_creation","username":"attacker","source_ip":"198.51.100.23","process_name":"powershell.exe","command_line":"powershell.exe -EncodedCommand SQBFAFgA","message":"Obfuscated base64 PowerShell command"},
-  {"event_type":"successful_login","username":"alice","source_ip":"10.0.0.8","message":"Normal successful login"}
+  {"event_type":"successful_login","username":"alice","source_ip":"10.0.0.8","message":"Normal successful login"},
+  {"event_type":"ssh_failed_login","username":"root","source_ip":"198.51.100.71","message":"SSH authentication failed on lab Linux host"},
+  {"event_type":"sudo_command","username":"analyst","source_ip":"10.0.0.20","command_line":"sudo systemctl status nginx","message":"Privileged command recorded by auditd"},
+  {"event_type":"account_created","username":"lab-admin","source_ip":"10.0.0.15","message":"Windows local account creation audit event"},
+  {"event_type":"scheduled_task_created","username":"alice","source_ip":"10.0.0.8","message":"Windows scheduled task creation audit event"},
+  {"event_type":"service_installed","username":"administrator","source_ip":"10.0.0.15","message":"Windows service installation audit event"},
+  {"event_type":"cloud_console_login","username":"cloud-analyst","source_ip":"203.0.113.12","message":"Synthetic cloud identity console sign-in event"},
+  {"event_type":"lsass_access_signal","username":"lab-user","source_ip":"10.0.0.15","message":"Synthetic endpoint telemetry signal for protected process access"},
+  {"event_type":"cloud_role_assigned","username":"cloud-admin","source_ip":"203.0.113.12","message":"Synthetic cloud audit event for role assignment"}
 ]

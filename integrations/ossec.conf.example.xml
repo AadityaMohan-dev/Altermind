@@ -1,0 +1,9 @@
+<!-- Add this block inside the existing <ossec_config> element on the manager.
+     Replace the values; do not add another outer <ossec_config> element. -->
+<integration>
+  <name>custom-alertmind</name>
+  <hook_url>https://ALERTMIND_HOST:8000/integrations/wazuh/alerts</hook_url>
+  <api_key>REPLACE_WITH_WAZUH_INGEST_TOKEN</api_key>
+  <alert_format>json</alert_format>
+  <level>3</level>
+</integration>

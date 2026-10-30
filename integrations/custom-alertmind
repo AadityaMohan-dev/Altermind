@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+import json
+import sys
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+
+TIMEOUT_SECONDS = 10
+MAX_ALERT_BYTES = 2_000_000
+
+
+def forward(alert_path: str, token: str, endpoint: str) -> None:
+    if not token:
+        raise ValueError("Missing integration token")
+    if not endpoint.startswith(("http://", "https://")):
+        raise ValueError("Endpoint must use HTTP or HTTPS")
+
+    path = Path(alert_path)
+    if path.stat().st_size > MAX_ALERT_BYTES:
+        raise ValueError("Alert file exceeds the configured size limit")
+    with path.open(encoding="utf-8") as file:
+        alert = json.load(file)
+    if not isinstance(alert, dict):
+        raise ValueError("Wazuh alert must be a JSON object")
+
+    body = json.dumps(alert, separators=(",", ":")).encode("utf-8")
+    request = urllib.request.Request(
+        endpoint,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "X-Wazuh-Token": token,
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+            if not 200 <= response.status < 300:
+                raise RuntimeError(f"AlertMind returned HTTP {response.status}")
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"AlertMind returned HTTP {exc.code}") from exc
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) != 4:
+        print("Usage: custom-alertmind ALERT_FILE API_KEY HOOK_URL", file=sys.stderr)
+        return 2
+    try:
+        forward(argv[1], argv[2], argv[3])
+    except RuntimeError as exc:
+        print(f"custom-alertmind: {exc}", file=sys.stderr)
+        return 1
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"custom-alertmind: {type(exc).__name__}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

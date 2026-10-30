@@ -1,0 +1,14 @@
+title: Scheduled Task Created
+id: AM-008
+status: test
+level: medium
+attack_tactic: Persistence
+attack_technique_id: T1053.005
+attack_technique: Scheduled Task
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    event_type: scheduled_task_created
+  condition: selection

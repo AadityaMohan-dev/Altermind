@@ -1,0 +1,14 @@
+title: Cloud Role Assignment Signal
+id: AM-012
+status: test
+level: high
+attack_tactic: Privilege Escalation
+attack_technique_id: T1098.003
+attack_technique: Additional Cloud Roles
+logsource:
+  product: cloud
+  service: audit
+detection:
+  selection:
+    event_type: cloud_role_assigned
+  condition: selection

@@ -1,0 +1,22 @@
+<!-- Examples only: merge applicable blocks inside existing agent
+     <ossec_config> on the matching lab endpoint. Do not copy all blocks onto
+     every host. -->
+
+<!-- Windows agent with Sysmon installed and collecting authorized lab events -->
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+
+<!-- Linux agent with auditd -->
+<localfile>
+  <log_format>audit</log_format>
+  <location>/var/log/audit/audit.log</location>
+</localfile>
+
+<!-- Linux authentication events; use the path that exists on the distro -->
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/var/log/auth.log</location>
+</localfile>
+<!-- RHEL-family alternative: /var/log/secure -->

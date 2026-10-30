@@ -1,0 +1,14 @@
+title: Local Account Created
+id: AM-007
+status: test
+level: high
+attack_tactic: Persistence
+attack_technique_id: T1136.001
+attack_technique: Local Account
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    event_type: account_created
+  condition: selection

@@ -1,0 +1,14 @@
+title: SSH Authentication Failure Signal
+id: AM-005
+status: test
+level: medium
+attack_tactic: Credential Access
+attack_technique_id: T1110.001
+attack_technique: Password Guessing
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    event_type: ssh_failed_login
+  condition: selection

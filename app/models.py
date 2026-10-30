@@ -39,3 +39,26 @@ class Case(Base):
     notes = Column(Text, default="")
     created_at = Column(DateTime, default=utcnow)
     alert = relationship("Alert", back_populates="case")
+
+class AssistantRun(Base):
+    __tablename__ = "assistant_runs"
+    id = Column(Integer, primary_key=True, index=True)
+    alert_id = Column(Integer, ForeignKey("alerts.id"), nullable=False)
+    model = Column(String, nullable=False)
+    prompt_version = Column(String, nullable=False)
+    prompt_text = Column(Text, nullable=False)
+    output_json = Column(Text, nullable=False)
+    review_status = Column(String, default="needs_review", nullable=False)
+    reviewed_by = Column(String, nullable=True)
+    reviewed_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=utcnow, nullable=False)
+    alert = relationship("Alert")
+
+class IntegrationReceipt(Base):
+    __tablename__ = "integration_receipts"
+    id = Column(Integer, primary_key=True, index=True)
+    source = Column(String, nullable=False)
+    source_event_id = Column(String, nullable=False, unique=True)
+    event_id = Column(Integer, ForeignKey("events.id"), nullable=False)
+    created_at = Column(DateTime, default=utcnow, nullable=False)
+    event = relationship("Event")

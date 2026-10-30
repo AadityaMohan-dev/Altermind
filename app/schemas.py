@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 class EventIn(BaseModel):
     event_type: str
@@ -17,3 +17,6 @@ class EventOut(EventIn):
 class CaseUpdate(BaseModel):
     status: str | None = None
     notes: str | None = None
+
+class AssistantReview(BaseModel):
+    reviewed_by: str = Field(min_length=1, max_length=100)

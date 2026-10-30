@@ -54,6 +54,17 @@ def test_demo_load_and_list_alerts(client):
         assert alert["evidence"]
         assert alert["status"] == "open"
 
+def test_rules_endpoint_exposes_attack_mappings(client):
+    response = client.get("/rules")
+
+    assert response.status_code == 200
+    rules = response.json()
+    assert len(rules) == 12
+    assert all(rule["attack_technique_id"] for rule in rules)
+    assert {
+        rule["attack_technique_id"] for rule in rules
+    } >= {"T1059.001", "T1110", "T1105"}
+
 def test_case_lifecycle(client):
     # 1. Load demo events
     client.post("/demo/load")
@@ -147,4 +158,3 @@ def test_case_persists_after_restart(tmp_path):
         assert restarted_case["alert_id"] == target_alert["id"]
     app.dependency_overrides.clear()
     engine2.dispose()
-

@@ -2,6 +2,9 @@ title: PowerShell Process Execution
 id: AM-001
 status: test
 level: medium
+attack_tactic: Execution
+attack_technique_id: T1059.001
+attack_technique: PowerShell
 logsource:
   product: windows
   category: process_creation

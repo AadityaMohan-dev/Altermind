@@ -1,0 +1,14 @@
+title: LSASS Access Signal
+id: AM-011
+status: test
+level: high
+attack_tactic: Credential Access
+attack_technique_id: T1003.001
+attack_technique: LSASS Memory
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    event_type: lsass_access_signal
+  condition: selection

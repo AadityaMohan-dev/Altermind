@@ -1,0 +1,14 @@
+title: Cloud Console Login Signal
+id: AM-010
+status: test
+level: low
+attack_tactic: Initial Access
+attack_technique_id: T1078.004
+attack_technique: Cloud Accounts
+logsource:
+  product: cloud
+  service: identity
+detection:
+  selection:
+    event_type: cloud_console_login
+  condition: selection

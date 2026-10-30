@@ -1,0 +1,14 @@
+title: Privileged Sudo Command
+id: AM-006
+status: test
+level: medium
+attack_tactic: Privilege Escalation
+attack_technique_id: T1548.003
+attack_technique: Sudo and Sudo Caching
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    event_type: sudo_command
+  condition: selection

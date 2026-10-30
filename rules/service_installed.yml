@@ -1,0 +1,14 @@
+title: New Windows Service Installed
+id: AM-009
+status: test
+level: medium
+attack_tactic: Persistence
+attack_technique_id: T1543.003
+attack_technique: Windows Service
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    event_type: service_installed
+  condition: selection

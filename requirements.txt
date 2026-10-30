@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
 streamlit
+pandas
 requests
 sqlalchemy
 pydantic
